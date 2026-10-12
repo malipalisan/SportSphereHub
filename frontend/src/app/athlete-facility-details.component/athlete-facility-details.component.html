@@ -1,0 +1,201 @@
+<div class="page facility-page">
+  @if(facility) {
+    <header class="page-header">
+      <div>
+        <h2>{{facility.name}}</h2>
+        <p class="page-subtitle">{{facility.city}}, {{facility.address}}</p>
+      </div>
+    </header>
+
+    <section class="section-card">
+      <p>{{facility.description}}</p>
+
+      @if(facility.images?.length > 0) {
+        <div class="gallery">
+          @for(image of facility.images; track image) {
+            <img [src]="'http://localhost:4000' + image" alt="Slika objekta">
+          }
+        </div>
+      }
+    </section>
+
+    <section class="section-card reviews-section">
+      <div class="reaction-stats">
+        <span>Svidjanja: {{facility.likesCount || 0}}</span>
+        <span>Nesvidjanja: {{facility.dislikesCount || 0}}</span>
+      </div>
+
+      @if(reviewInfo?.canReview) {
+        <form class="review-form">
+          <div class="reaction-choice">
+            <label>
+              <input type="radio" name="reviewReaction" value="like" [(ngModel)]="reviewReaction">
+              Svidja mi se
+            </label>
+            <label>
+              <input type="radio" name="reviewReaction" value="dislike" [(ngModel)]="reviewReaction">
+              Ne svidja mi se
+            </label>
+          </div>
+
+          <label>
+            Komentar
+            <textarea
+              name="reviewComment"
+              [(ngModel)]="reviewComment"
+              maxlength="500"
+              placeholder="Unesite komentar za objekat"
+            ></textarea>
+          </label>
+
+          <div class="action-row">
+            <button type="button" (click)="submitReview()">Sacuvaj ocenu</button>
+            <span>Preostalo ocena: {{reviewInfo.remainingReviews}}</span>
+          </div>
+        </form>
+      } @else {
+        <p class="empty-message">Ocenu mozete ostaviti nakon potvrdjene rezervacije u ovom objektu.</p>
+      }
+
+      <h3>Poslednji komentari</h3>
+      @if(comments.length > 0) {
+        <div class="comments-list">
+          @for(comment of comments; track comment._id) {
+            <article class="comment-item" [class.own-comment]="comment.isOwn">
+              <div class="comment-header">
+                <strong>
+                  {{comment.athleteId?.firstName}} {{comment.athleteId?.lastName}}
+                  @if(!comment.athleteId?.firstName && !comment.athleteId?.lastName) {
+                    {{comment.athleteId?.username}}
+                  }
+                </strong>
+                <span>{{comment.reaction === 'like' ? 'Svidja mi se' : 'Ne svidja mi se'}}</span>
+              </div>
+              <p>{{comment.comment}}</p>
+              <small>{{comment.createdAt | date:'dd.MM.yyyy. HH:mm'}}</small>
+            </article>
+          }
+        </div>
+      } @else {
+        <p class="empty-message">Jos nema komentara za ovaj objekat.</p>
+      }
+    </section>
+
+    @if(message !== "") {
+      <p class="success-message">{{message}}</p>
+    }
+
+    @if(error !== "") {
+      <p class="error-message">{{error}}</p>
+    }
+
+    <section class="section-card">
+      <h3>Rezervacija termina</h3>
+
+      <div class="reservation-panel">
+        <label>
+          Teren/Hala
+          <select [(ngModel)]="selectedResourceId" name="selectedResourceId" (change)="onResourceChange()">
+            @for(resource of resources; track resource._id) {
+              <option [value]="resource._id">{{resource.name}} ({{resource.type}})</option>
+            }
+          </select>
+        </label>
+
+        <form class="reservation-form">
+          <label>
+            Datum
+            <input type="date" name="reservationDate" [(ngModel)]="reservationDate">
+          </label>
+          <label>
+            Pocetak
+            <select name="reservationStartHour" [(ngModel)]="reservationStartHour">
+              @for(hour of hours; track hour) {
+                <option [value]="hour">{{hour}}:00</option>
+              }
+            </select>
+          </label>
+          <label>
+            Trajanje
+            <select name="duration" [(ngModel)]="duration">
+              <option [value]="1">1 sat</option>
+              <option [value]="2">2 sata</option>
+              <option [value]="3">3 sata</option>
+            </select>
+          </label>
+          <button type="button" [disabled]="reservationInProgress" (click)="createReservation()">Rezervisi</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section-card calendar-page">
+      <header class="calendar-header">
+        <h2>Kalendar termina</h2>
+        <div class="filters">
+          <select [(ngModel)]="selectedResourceId" name="calendarResourceId" (change)="onResourceChange()">
+            @for(resource of resources; track resource._id) {
+              <option [value]="resource._id">{{resource.name}}</option>
+            }
+          </select>
+
+          <button type="button" (click)="goToday()">Danas</button>
+          <button type="button" (click)="previousWeek()">&lt;</button>
+          <button type="button" (click)="nextWeek()">&gt;</button>
+        </div>
+      </header>
+
+      <div class="calendar-grid">
+        <div class="time-column">
+          <div class="corner">Vreme</div>
+          <div class="time-labels" [style.height.px]="calendarHeight">
+            @for(hour of timeLabels; track hour) {
+              <div class="time-cell" [style.top.px]="timeLabelTop(hour)">
+                {{hour}}:00
+              </div>
+            }
+          </div>
+        </div>
+
+        @for(day of days; track day.toDateString()) {
+          <div class="day-column">
+            <div class="day-title">{{day | date:'EEE dd.MM.'}}</div>
+
+            <div class="day-body" [style.height.px]="calendarHeight">
+              @for(hour of hours; track hour) {
+                <button
+                  type="button"
+                  class="calendar-slot"
+                  [class.busy]="isCalendarSlotBusy(day, hour)"
+                  [class.past]="isCalendarSlotPast(day, hour)"
+                  [class.closed]="!isCalendarSlotInsideWorkingHours(hour)"
+                  [class.selected]="isCalendarSlotSelected(day, hour)"
+                  [disabled]="!isCalendarSlotAvailable(day, hour)"
+                  [title]="calendarSlotTitle(day, hour)"
+                  (click)="reserveFromCalendar(day, hour)"
+                ></button>
+              }
+
+              @for(event of eventsForDay(day); track event._id) {
+                <article
+                  class="event-card"
+                  [class.reservation]="event.type === 'reservation'"
+                  [class.training]="event.type === 'training'"
+                  [style.top.px]="eventTop(event)"
+                  [style.height.px]="eventHeight(event)"
+                >
+                  <strong>{{event.title}}</strong>
+                  <span>{{event.startAt | date:'HH:mm'}} - {{event.endAt | date:'HH:mm'}}</span>
+                </article>
+              }
+            </div>
+          </div>
+        }
+      </div>
+
+      <footer class="legend">
+        <span class="legend-item"><i class="reservation-box"></i>Rezervacija</span>
+        <span class="legend-item"><i class="training-box"></i>Trening</span>
+      </footer>
+    </section>
+  }
+</div>

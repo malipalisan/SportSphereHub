@@ -1,0 +1,50 @@
+.training-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.filters,
+.booking-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+  align-items: end;
+  margin: 16px 0;
+}
+
+label {
+  display: grid;
+  gap: 5px;
+}
+
+input,
+select,
+button {
+  min-height: 34px;
+  padding: 6px 9px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #d1d5db;
+  padding: 9px;
+  text-align: left;
+}
+
+th {
+  background: #f9fafb;
+}
+
+.success-message {
+  color: #15803d;
+}
+
+.error-message {
+  color: #b91c1c;
+}

@@ -1,0 +1,68 @@
+<section class="page shop-page">
+  <header class="page-header">
+    <div>
+      <h2>Prodavnica opreme</h2>
+      <p class="page-subtitle">Pregled kataloga opreme po sportu i upravljanje korpom.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="success-message">{{message}}</p>
+  }
+
+  @if(error !== "") {
+    <p class="error-message">{{error}}</p>
+  }
+
+  <section class="section-card">
+    <label class="sport-filter">
+      Sport
+      <select [(ngModel)]="sportId" name="sportId" (change)="loadShop()">
+        <option value="">Svi sportovi</option>
+        @for(sport of sports; track sport._id) {
+          <option [value]="sport._id">{{sport.name}}</option>
+        }
+      </select>
+    </label>
+  </section>
+
+  <div class="shop-layout">
+    <section class="section-card catalog-section">
+      <h3>Katalog</h3>
+
+      <div class="catalog">
+        @for(item of equipment; track item._id) {
+          <article class="equipment-card">
+            @if(item.imageUrl !== "") {
+              <img [src]="'http://localhost:4000' + item.imageUrl" alt="Oprema">
+            }
+            <h3>{{item.name}}</h3>
+            <p>{{item.sportId?.name}} - {{item.facilityId?.name}}</p>
+            <p>Cena: {{item.price}}</p>
+            <p>Zalihe: {{item.stock}}</p>
+            <button type="button" [disabled]="item.stock <= 0" (click)="addToCart(item)">Dodaj u korpu</button>
+          </article>
+        }
+      </div>
+    </section>
+
+    <aside class="section-card cart">
+      <h3>Korpa</h3>
+
+      @if(cart.length === 0) {
+        <p class="empty-message">Korpa je prazna.</p>
+      }
+
+      @for(item of cart; track item.equipmentId) {
+        <div class="cart-row">
+          <span>{{item.name}}</span>
+          <input type="number" min="1" [(ngModel)]="item.quantity" [name]="'qty' + item.equipmentId">
+          <button type="button" (click)="removeFromCart(item)">Ukloni</button>
+        </div>
+      }
+
+      <p>Ukupno: {{total()}}</p>
+      <button type="button" [disabled]="cart.length === 0" (click)="createOrder()">Poruci</button>
+    </aside>
+  </div>
+</section>

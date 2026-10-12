@@ -1,0 +1,30 @@
+[
+  {
+    "_id": { "$oid": "6e0000000000000000000001" },
+    "reservationId": { "$oid": "690000000000000000000001" },
+    "athleteId": { "$oid": "660000000000000000000101" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "type": "like",
+    "comment": "Odlican teren i korektno osoblje.",
+    "createdAt": { "$date": "2026-06-12T20:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6e0000000000000000000002" },
+    "reservationId": { "$oid": "690000000000000000000002" },
+    "athleteId": { "$oid": "660000000000000000000102" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "type": "like",
+    "comment": "Sljaka je bila odlicno pripremljena.",
+    "createdAt": { "$date": "2026-06-19T10:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6e0000000000000000000003" },
+    "reservationId": { "$oid": "690000000000000000000006" },
+    "athleteId": { "$oid": "660000000000000000000104" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "type": "dislike",
+    "comment": "Termin sam propustila, ali komunikacija oko odjave nije bila jasna.",
+    "createdAt": { "$date": "2026-06-18T19:00:00.000Z" }
+  }
+]
+

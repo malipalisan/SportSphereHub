@@ -1,0 +1,52 @@
+[
+  {
+    "_id": { "$oid": "651000000000000000000001" },
+    "name": "Arena Center DOO",
+    "headquartersAddress": "Bulevar sporta 12, Beograd",
+    "registrationNumber": "12345678",
+    "taxId": "101234567",
+    "employeeIds": [
+      { "$oid": "660000000000000000000201" },
+      { "$oid": "660000000000000000000202" }
+    ],
+    "createdAt": { "$date": "2026-05-01T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "651000000000000000000002" },
+    "name": "Top Spin Klub DOO",
+    "headquartersAddress": "Teniska 4, Novi Sad",
+    "registrationNumber": "22345678",
+    "taxId": "201234567",
+    "employeeIds": [
+      { "$oid": "660000000000000000000203" }
+    ],
+    "createdAt": { "$date": "2026-05-03T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "651000000000000000000003" },
+    "name": "Aqua Fit Centar DOO",
+    "headquartersAddress": "Vodena 9, Nis",
+    "registrationNumber": "32345678",
+    "taxId": "301234567",
+    "employeeIds": [
+      { "$oid": "660000000000000000000204" }
+    ],
+    "createdAt": { "$date": "2026-05-04T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "651000000000000000000004" },
+    "name": "Pending Sport Group DOO",
+    "headquartersAddress": "Nova 21, Kragujevac",
+    "registrationNumber": "42345678",
+    "taxId": "401234567",
+    "employeeIds": [
+      { "$oid": "660000000000000000000205" }
+    ],
+    "createdAt": { "$date": "2026-06-18T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T08:00:00.000Z" }
+  }
+]
+

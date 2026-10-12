@@ -1,0 +1,268 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #111827;
+}
+
+h1, h2, h3 {
+  color: #111827;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  margin-top: 16px;
+}
+
+th, td {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  text-align: left;
+}
+
+th {
+  background-color: #e5e7eb;
+  cursor: pointer;
+}
+
+tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+input, select {
+  padding: 8px;
+  margin: 6px 0 12px 0;
+  border: 1px solid #9ca3af;
+  border-radius: 5px;
+}
+
+button {
+  padding: 8px 14px;
+  margin: 4px;
+  border: none;
+  border-radius: 6px;
+
+  background-color: #2563eb;
+  color: white;
+
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+.card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.page {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 24px;
+  box-sizing: border-box;
+  color: #111827;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.page-header h1,
+.page-header h2 {
+  margin: 0 0 6px;
+}
+
+.page-subtitle {
+  margin: 0;
+  color: #64748b;
+}
+
+.section-card {
+  background: white;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  padding: 18px;
+  margin: 18px 0;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.section-card h3,
+.section-card h4 {
+  margin-top: 0;
+}
+
+.form-card {
+  background: white;
+  border: 1px solid #dbe3ef;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px 16px;
+  align-items: end;
+}
+
+.form-grid label,
+.field-group {
+  display: grid;
+  gap: 6px;
+}
+
+.field-group.checkbox-group {
+  align-content: start;
+}
+
+.checkbox-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+}
+
+.checkbox-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 14px 0 20px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  margin-top: 0;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #d1d5db;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: #f8fafc;
+  white-space: nowrap;
+}
+
+.action-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+}
+
+.status-message,
+.empty-message {
+  color: #64748b;
+}
+
+.success-message {
+  color: #15803d;
+}
+
+.error-message {
+  color: #b91c1c;
+}
+
+.avatar-preview {
+  width: 140px;
+  height: 140px;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.info-item {
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 10px;
+  background: #f8fafc;
+}
+
+.info-label {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.profile-summary {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+textarea {
+  min-height: 90px;
+  padding: 8px;
+  border: 1px solid #9ca3af;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+.auth-page {
+  max-width: 560px;
+}
+
+.auth-form {
+  display: grid;
+}
+
+.password-page {
+  max-width: 560px;
+}
+
+.register-page select[multiple] {
+  min-height: 120px;
+}
+
+@media (max-width: 760px) {
+  .page-header {
+    display: grid;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-summary {
+    grid-template-columns: 1fr;
+  }
+}

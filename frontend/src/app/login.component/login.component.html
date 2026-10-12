@@ -1,0 +1,29 @@
+<div class="page auth-page">
+  <header class="page-header">
+    <div>
+      <h2>Login</h2>
+      <p class="page-subtitle">Prijava na SportSphere Hub nalog</p>
+    </div>
+  </header>
+
+  <form class="form-card form-grid auth-form" name="LoginForm">
+    <label>
+      Korisnicko ime
+      <input type="text" name="username" [(ngModel)]="username" placeholder="Korisnicko ime">
+    </label>
+
+    <label>
+      Lozinka
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Lozinka">
+    </label>
+
+    <div class="action-row">
+      <button type="button" (click)="login()">Uloguj se</button>
+      <a routerLink="/forgot-password">Zaboravili ste lozinku?</a>
+    </div>
+
+    @if(message !== "") {
+      <p class="error-message">{{message}}</p>
+    }
+  </form>
+</div>

@@ -1,0 +1,112 @@
+[
+  {
+    "_id": { "$oid": "670000000000000000000001" },
+    "organizationId": { "$oid": "651000000000000000000001" },
+    "name": "Arena Center",
+    "city": "Beograd",
+    "address": "Bulevar sporta 12",
+    "location": { "lat": 44.8149, "lng": 20.4590 },
+    "description": "Veliki sportski centar sa otvorenim i zatvorenim terenima za timske sportove.",
+    "images": ["/uploads/facilities/arena-1.jpg", "/uploads/facilities/arena-2.jpg"],
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000002" },
+      { "$oid": "64f000000000000000000005" }
+    ],
+    "status": "approved",
+    "workingHours": { "from": "08:00", "to": "23:00" },
+    "defaultHourlyPrice": 3000,
+    "allowedNoShows": 2,
+    "likesCount": 7,
+    "dislikesCount": 1,
+    "createdAt": { "$date": "2026-05-10T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-15T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "670000000000000000000002" },
+    "organizationId": { "$oid": "651000000000000000000002" },
+    "name": "Top Spin Klub",
+    "city": "Novi Sad",
+    "address": "Teniska 4",
+    "location": { "lat": 45.2671, "lng": 19.8335 },
+    "description": "Teniski klub sa otvorenim sljakastim terenima i zatvorenom halom.",
+    "images": ["/uploads/facilities/top-spin-1.jpg"],
+    "sportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "status": "approved",
+    "workingHours": { "from": "07:00", "to": "22:00" },
+    "defaultHourlyPrice": 2400,
+    "allowedNoShows": 2,
+    "likesCount": 5,
+    "dislikesCount": 0,
+    "createdAt": { "$date": "2026-05-12T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-14T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "670000000000000000000003" },
+    "organizationId": { "$oid": "651000000000000000000003" },
+    "name": "Aqua Fit Centar",
+    "city": "Nis",
+    "address": "Vodena 9",
+    "location": { "lat": 43.3209, "lng": 21.8958 },
+    "description": "Bazen, fitnes sala i sala za funkcionalne treninge.",
+    "images": ["/uploads/facilities/aqua-fit-1.jpg"],
+    "sportIds": [
+      { "$oid": "64f000000000000000000004" },
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "status": "approved",
+    "workingHours": { "from": "06:00", "to": "22:00" },
+    "defaultHourlyPrice": 1800,
+    "allowedNoShows": 3,
+    "likesCount": 4,
+    "dislikesCount": 2,
+    "createdAt": { "$date": "2026-05-13T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-14T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "670000000000000000000004" },
+    "organizationId": { "$oid": "651000000000000000000001" },
+    "name": "Open Court Zvezdara",
+    "city": "Beograd",
+    "address": "Sportska 33",
+    "location": { "lat": 44.7967, "lng": 20.5167 },
+    "description": "Otvoreni teren za mali fudbal i basket, pogodan za vecernje termine.",
+    "images": ["/uploads/facilities/open-court-1.jpg"],
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000002" }
+    ],
+    "status": "approved",
+    "workingHours": { "from": "09:00", "to": "23:00" },
+    "defaultHourlyPrice": 2200,
+    "allowedNoShows": 2,
+    "likesCount": 3,
+    "dislikesCount": 1,
+    "createdAt": { "$date": "2026-05-15T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-14T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "670000000000000000000005" },
+    "organizationId": { "$oid": "651000000000000000000004" },
+    "name": "Pending Sports Park",
+    "city": "Kragujevac",
+    "address": "Nova 21",
+    "location": { "lat": 44.0128, "lng": 20.9114 },
+    "description": "Objekat ceka odobrenje administratora.",
+    "images": [],
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" }
+    ],
+    "status": "pending",
+    "workingHours": { "from": "10:00", "to": "21:00" },
+    "defaultHourlyPrice": 1600,
+    "allowedNoShows": 2,
+    "likesCount": 0,
+    "dislikesCount": 0,
+    "createdAt": { "$date": "2026-06-18T13:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T13:00:00.000Z" }
+  }
+]
+

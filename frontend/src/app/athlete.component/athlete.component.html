@@ -1,0 +1,225 @@
+<div class="page athlete-page">
+  <header class="page-header">
+    <div>
+      <h2>Profil sportiste</h2>
+      <p class="page-subtitle">Pregled i azuriranje profila, rezervacija, treninga i porudzbina.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="success-message">{{message}}</p>
+  }
+
+  @if(error !== "") {
+    <p class="error-message">{{error}}</p>
+  }
+
+  <section class="section-card">
+    <div class="profile-layout">
+      <div class="avatar-panel">
+        @if(user.avatarUrl !== "") {
+          <img [src]="'http://localhost:4000' + user.avatarUrl" alt="Profilna slika">
+        }
+
+        <label>
+          Promeni sliku
+          <input type="file" accept="image/*" (change)="onAvatarSelected($event)">
+        </label>
+      </div>
+
+      <form class="profile-form" (ngSubmit)="updateProfile()">
+        <table class="profile-table data-table">
+          <tbody>
+            <tr>
+              <th>Korisnicko ime</th>
+              <td>
+                <input type="text" name="username" [(ngModel)]="user.username" readonly>
+              </td>
+            </tr>
+            <tr>
+              <th>Ime</th>
+              <td>
+                <input type="text" name="firstName" [(ngModel)]="user.firstName">
+              </td>
+            </tr>
+            <tr>
+              <th>Prezime</th>
+              <td>
+                <input type="text" name="lastName" [(ngModel)]="user.lastName">
+              </td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>
+                <input type="email" name="email" [(ngModel)]="user.email">
+              </td>
+            </tr>
+            <tr>
+              <th>Telefon</th>
+              <td>
+                <input type="text" name="phone" [(ngModel)]="user.phone">
+              </td>
+            </tr>
+            <tr>
+              <th>Omiljeni sportovi</th>
+              <td>
+                <div class="sports-list">
+                  @for(sport of sports; track sport._id) {
+                    <label class="sport-option">
+                      <input
+                        type="checkbox"
+                        [checked]="isFavoriteSport(sport._id)"
+                        (change)="toggleFavoriteSport(sport._id, $event)"
+                      >
+                      {{sport.name}}
+                    </label>
+                  }
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button type="submit" class="primary-button">Sacuvaj izmene</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Rezervacije</h3>
+
+    @if(reservations.length > 0) {
+      <div class="table-wrap">
+        <table class="reservations-table data-table">
+          <thead>
+            <tr>
+              <th (click)="sortReservations('facility')">Objekat{{sortIndicator('facility')}}</th>
+              <th (click)="sortReservations('city')">Grad{{sortIndicator('city')}}</th>
+              <th (click)="sortReservations('resource')">Teren/Hala{{sortIndicator('resource')}}</th>
+              <th (click)="sortReservations('sport')">Sport{{sortIndicator('sport')}}</th>
+              <th (click)="sortReservations('startAt')">Termin{{sortIndicator('startAt')}}</th>
+              <th (click)="sortReservations('status')">Status{{sortIndicator('status')}}</th>
+              <th>Akcija</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(reservation of reservations; track reservation._id) {
+              <tr>
+                <td>{{reservation.facilityId?.name}}</td>
+                <td>{{reservation.facilityId?.city}}</td>
+                <td>{{reservation.resourceId?.name}}</td>
+                <td>{{reservation.sportId?.name}}</td>
+                <td>
+                  {{reservation.startAt | date:'dd.MM.yyyy. HH:mm'}}
+                  -
+                  {{reservation.endAt | date:'HH:mm'}}
+                </td>
+                <td>{{reservation.status}}</td>
+                <td>
+                  @if(canCancelReservation(reservation)) {
+                    <button type="button" class="cancel-button" (click)="cancelReservation(reservation)">
+                      Otkazi
+                    </button>
+                  }
+                  @if(canConfirmReservation(reservation)) {
+                    <button type="button" class="confirm-button" (click)="confirmReservation(reservation)">
+                      Potvrdi
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema rezervacija za prikaz.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Treninzi</h3>
+
+    @if(trainings.length > 0) {
+      <div class="table-wrap">
+        <table class="reservations-table data-table">
+          <thead>
+            <tr>
+              <th>Objekat</th>
+              <th>Trener</th>
+              <th>Teren/Hala</th>
+              <th>Sport</th>
+              <th>Termin</th>
+              <th>Status</th>
+              <th>Cena</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(training of trainings; track training._id) {
+              <tr>
+                <td>{{training.facilityId?.name}}</td>
+                <td>{{training.trainerId?.firstName}} {{training.trainerId?.lastName}}</td>
+                <td>{{training.resourceId?.name}}</td>
+                <td>{{training.sportId?.name}}</td>
+                <td>
+                  {{training.startAt | date:'dd.MM.yyyy. HH:mm'}}
+                  -
+                  {{training.endAt | date:'HH:mm'}}
+                </td>
+                <td>{{training.status}}</td>
+                <td>{{training.price}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema treninga za prikaz.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Porudzbine</h3>
+
+    @if(orders.length > 0) {
+      <div class="table-wrap">
+        <table class="reservations-table data-table">
+          <thead>
+            <tr>
+              <th>Objekat</th>
+              <th>Stavke</th>
+              <th>Ukupno</th>
+              <th>Status</th>
+              <th>Datum</th>
+              <th>Akcija</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(order of orders; track order._id) {
+              <tr>
+                <td>{{order.facilityId?.name}}</td>
+                <td>
+                  @for(item of order.items; track item.equipmentId) {
+                    <div>{{item.name}} x {{item.quantity}}</div>
+                  }
+                </td>
+                <td>{{order.totalPrice}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.createdAt | date:'dd.MM.yyyy. HH:mm'}}</td>
+                <td>
+                  @if(order.status === "ordered") {
+                    <button type="button" class="cancel-button" (click)="cancelOrder(order)">
+                      Otkazi
+                    </button>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema porudzbina za prikaz.</p>
+    }
+  </section>
+</div>

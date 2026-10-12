@@ -1,0 +1,113 @@
+[
+  {
+    "_id": { "$oid": "680000000000000000000001" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "name": "Otvoreni teren A",
+    "type": "outdoor",
+    "capacity": 10,
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" }
+    ],
+    "equipmentDescription": "Vestacka trava, reflektori, golovi za mali fudbal.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000002" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "name": "Hala Basket 1",
+    "type": "indoor",
+    "capacity": 12,
+    "sportIds": [
+      { "$oid": "64f000000000000000000002" },
+      { "$oid": "64f000000000000000000005" }
+    ],
+    "equipmentDescription": "Parket, semafor, kos konstrukcije, mreza za odbojku.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000003" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "name": "Dvorana Tim",
+    "type": "arena",
+    "capacity": 20,
+    "sportIds": [
+      { "$oid": "64f000000000000000000002" },
+      { "$oid": "64f000000000000000000007" }
+    ],
+    "equipmentDescription": "Velika dvorana za ekipne sportove sa tribinama.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000004" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "name": "Tenis Sljaka 1",
+    "type": "outdoor",
+    "capacity": 4,
+    "sportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "equipmentDescription": "Sljakasti teren, mreza, klupe i nocna rasveta.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000005" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "name": "Tenis Hala",
+    "type": "indoor",
+    "capacity": 4,
+    "sportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "equipmentDescription": "Zatvoreni teren sa podlogom za zimske termine.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000006" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "name": "Bazen 25m",
+    "type": "indoor",
+    "capacity": 16,
+    "sportIds": [
+      { "$oid": "64f000000000000000000004" }
+    ],
+    "equipmentDescription": "Pet staza, startni blokovi, merenje vremena.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000007" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "name": "Fitnes sala",
+    "type": "indoor",
+    "capacity": 15,
+    "sportIds": [
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "equipmentDescription": "Sprave, tegovi, kardio zona i prostirke.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000008" },
+    "facilityId": { "$oid": "670000000000000000000004" },
+    "name": "Open Basket",
+    "type": "outdoor",
+    "capacity": 6,
+    "sportIds": [
+      { "$oid": "64f000000000000000000002" }
+    ],
+    "equipmentDescription": "Poligon za basket 3x3 sa reflektorima.",
+    "active": true
+  },
+  {
+    "_id": { "$oid": "680000000000000000000009" },
+    "facilityId": { "$oid": "670000000000000000000005" },
+    "name": "Pending Fudbal",
+    "type": "outdoor",
+    "capacity": 10,
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" }
+    ],
+    "equipmentDescription": "Test teren za objekat koji ceka odobrenje.",
+    "active": true
+  }
+]
+

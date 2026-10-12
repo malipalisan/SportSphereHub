@@ -1,0 +1,148 @@
+<section class="page teammates-page">
+  <header class="page-header">
+    <div>
+      <h2>Pronalazenje saigraca</h2>
+      <p class="page-subtitle">Objavite oglas za termin ili odgovorite na aktivne oglase drugih sportista.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="success-message">{{message}}</p>
+  }
+
+  @if(error !== "") {
+    <p class="error-message">{{error}}</p>
+  }
+
+  <section class="section-card">
+    <h3>Novi oglas</h3>
+
+    <form class="ad-form form-grid">
+      <label>
+        Sport
+        <select name="sportId" [(ngModel)]="ad.sportId">
+          @for(sport of sports; track sport._id) {
+            <option [value]="sport._id">{{sport.name}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Grad
+        <select name="city" [(ngModel)]="ad.city">
+          @for(city of cities; track city) {
+            <option [value]="city">{{city}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Datum
+        <input type="date" name="date" [(ngModel)]="ad.date">
+      </label>
+
+      <label>
+        Pocetak
+        <input type="number" min="0" max="23" name="startHour" [(ngModel)]="ad.startHour">
+      </label>
+
+      <label>
+        Trajanje
+        <input type="number" min="1" max="4" name="duration" [(ngModel)]="ad.duration">
+      </label>
+
+      <label>
+        Nedostaje igraca
+        <input type="number" min="1" name="missingPlayers" [(ngModel)]="ad.missingPlayers">
+      </label>
+
+      <div class="action-row">
+        <button type="button" (click)="createAd()">Objavi oglas</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="section-card">
+    <h3>Aktivni oglasi</h3>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Autor</th>
+            <th>Sport</th>
+            <th>Grad</th>
+            <th>Termin</th>
+            <th>Popunjeno</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(ad of ads; track ad._id) {
+            <tr>
+              <td>{{ad.authorId?.firstName}} {{ad.authorId?.lastName}}</td>
+              <td>{{ad.sportId?.name}}</td>
+              <td>{{ad.city}}</td>
+              <td>{{ad.startAt | date:'dd.MM.yyyy. HH:mm'}} - {{ad.endAt | date:'HH:mm'}}</td>
+              <td>{{approvedCount(ad)}} / {{ad.missingPlayers}}</td>
+              <td>
+                @if(ad.authorId?._id !== athleteId && requestStatus(ad) === "") {
+                  <button type="button" (click)="joinAd(ad)">Pridruzi se</button>
+                } @else if(requestStatus(ad) !== "") {
+                  {{requestStatus(ad)}}
+                }
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Moji oglasi</h3>
+
+    <div class="my-ads">
+      @for(ad of myAds; track ad._id) {
+        <article class="my-ad">
+          <header>
+            <strong>{{ad.sportId?.name}} - {{ad.city}}</strong>
+            <span>{{ad.status}}</span>
+          </header>
+
+          <p>{{ad.startAt | date:'dd.MM.yyyy. HH:mm'}} - {{ad.endAt | date:'HH:mm'}}</p>
+
+          @if(ad.status === "active") {
+            <button type="button" (click)="closeAd(ad)">Zatvori oglas</button>
+          }
+
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Sportista</th>
+                  <th>Status</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                @for(request of ad.joinRequests; track request.athleteId._id) {
+                  <tr>
+                    <td>{{request.athleteId?.firstName}} {{request.athleteId?.lastName}}</td>
+                    <td>{{request.status}}</td>
+                    <td>
+                      @if(request.status === "pending" && ad.status === "active") {
+                        <button type="button" (click)="updateRequest(ad, request, 'approved')">Odobri</button>
+                        <button type="button" (click)="updateRequest(ad, request, 'rejected')">Odbij</button>
+                      }
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+</section>

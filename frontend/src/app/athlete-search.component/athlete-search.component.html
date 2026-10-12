@@ -1,0 +1,98 @@
+<section class="page athlete-search-page">
+  <header class="page-header">
+    <div>
+      <h2>Pretraga i rezervacija</h2>
+      <p class="page-subtitle">Pretrazite objekte i dostupne terene po gradu, sportu i tipu resursa.</p>
+    </div>
+  </header>
+
+  <section class="section-card">
+    <form class="search-form form-grid" (ngSubmit)="search()">
+      <label>
+        Naziv objekta
+        <input type="text" name="name" [(ngModel)]="name">
+      </label>
+
+      <label>
+        Gradovi
+        <select multiple name="cities" [(ngModel)]="cities">
+          @for(city of availableCities; track city) {
+            <option [value]="city">{{city}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Sport
+        <select name="sportId" [(ngModel)]="sportId">
+          <option value="">Svi sportovi</option>
+          @for(sport of sports; track sport._id) {
+            <option [value]="sport._id">{{sport.name}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Tip terena/hale
+        <select name="resourceType" [(ngModel)]="resourceType">
+          <option value="">Svi tipovi</option>
+          @for(type of resourceTypes; track type) {
+            <option [value]="type">{{type}}</option>
+          }
+        </select>
+      </label>
+
+      <label class="checkbox-label checkbox-option">
+        <input type="checkbox" name="onlyFreeToday" [(ngModel)]="onlyFreeToday">
+        Samo slobodni termini danas
+      </label>
+
+      <div class="action-row">
+        <button type="submit">Pretrazi</button>
+      </div>
+    </form>
+  </section>
+
+  @if(message !== "") {
+    <p class="status-message">{{message}}</p>
+  }
+
+  @if(results.length > 0) {
+    <section class="section-card">
+      <h3>Rezultati pretrage</h3>
+
+      <div class="table-wrap">
+        <table class="results-table data-table">
+          <thead>
+            <tr>
+              <th>Objekat</th>
+              <th>Grad</th>
+              <th>Adresa</th>
+              <th>Dostupni tereni/hale</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(result of results; track result.facility._id) {
+              <tr>
+                <td>{{result.facility.name}}</td>
+                <td>{{result.facility.city}}</td>
+                <td>{{result.facility.address}}</td>
+                <td>
+                  @for(resource of result.resources; track resource._id) {
+                    <span class="resource-pill">{{resource.name}}</span>
+                  }
+                </td>
+                <td>
+                  <button type="button" (click)="openDetails(result.facility._id)">Detalji</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  } @else {
+    <p class="empty-message">Nema rezultata za prikaz.</p>
+  }
+</section>

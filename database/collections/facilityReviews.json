@@ -1,0 +1,92 @@
+[
+  {
+    "_id": { "$oid": "6f0000000000000000000001" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "athleteId": { "$oid": "660000000000000000000101" },
+    "reaction": "like",
+    "comment": "Teren je bio odlicno pripremljen, a osoblje je brzo potvrdilo termin.",
+    "createdAt": { "$date": "2026-06-22T20:30:00.000Z" },
+    "updatedAt": { "$date": "2026-06-22T20:30:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000002" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "athleteId": { "$oid": "660000000000000000000104" },
+    "reaction": "dislike",
+    "comment": "Hala je dobra, ali je termin kasnio nekoliko minuta zbog prethodne grupe.",
+    "createdAt": { "$date": "2026-06-21T20:45:00.000Z" },
+    "updatedAt": { "$date": "2026-06-21T20:45:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000003" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "athleteId": { "$oid": "660000000000000000000102" },
+    "reaction": "like",
+    "comment": "Sljaka je bila ravna i dobra za igru, sve je proslo bez cekanja.",
+    "createdAt": { "$date": "2026-06-19T10:15:00.000Z" },
+    "updatedAt": { "$date": "2026-06-19T10:15:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000004" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "athleteId": { "$oid": "660000000000000000000104" },
+    "reaction": "like",
+    "comment": "Dobar klub za tenis, rasveta u hali je bila sasvim korektna.",
+    "createdAt": { "$date": "2026-07-11T10:25:00.000Z" },
+    "updatedAt": { "$date": "2026-07-11T10:25:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000005" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "athleteId": { "$oid": "660000000000000000000102" },
+    "reaction": "like",
+    "comment": "Bazen je cist, svlacionice su uredne i termin je krenuo tacno na vreme.",
+    "createdAt": { "$date": "2026-06-24T08:20:00.000Z" },
+    "updatedAt": { "$date": "2026-06-24T08:20:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000006" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "athleteId": { "$oid": "660000000000000000000101" },
+    "reaction": "dislike",
+    "comment": "Sprave u fitnes delu su dobre, ali je guzva bila veca nego sto sam ocekivao.",
+    "createdAt": { "$date": "2026-07-06T09:30:00.000Z" },
+    "updatedAt": { "$date": "2026-07-06T09:30:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000007" },
+    "facilityId": { "$oid": "670000000000000000000004" },
+    "athleteId": { "$oid": "660000000000000000000103" },
+    "reaction": "like",
+    "comment": "Odlican otvoreni teren za basket, mreze i podloga su bili u dobrom stanju.",
+    "createdAt": { "$date": "2026-06-20T17:30:00.000Z" },
+    "updatedAt": { "$date": "2026-06-20T17:30:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000008" },
+    "facilityId": { "$oid": "670000000000000000000004" },
+    "athleteId": { "$oid": "660000000000000000000102" },
+    "reaction": "like",
+    "comment": "Dobra lokacija i prijatan vecernji termin, teren je bio slobodan na vreme.",
+    "createdAt": { "$date": "2026-07-04T18:10:00.000Z" },
+    "updatedAt": { "$date": "2026-07-04T18:10:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000009" },
+    "facilityId": { "$oid": "670000000000000000000005" },
+    "athleteId": { "$oid": "660000000000000000000101" },
+    "reaction": "like",
+    "comment": "Test komentar za pending objekat, koristan za proveru prikaza komentara.",
+    "createdAt": { "$date": "2026-07-05T12:00:00.000Z" },
+    "updatedAt": { "$date": "2026-07-05T12:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6f0000000000000000000010" },
+    "facilityId": { "$oid": "670000000000000000000005" },
+    "athleteId": { "$oid": "660000000000000000000103" },
+    "reaction": "dislike",
+    "comment": "Test komentar za proveru nesvidjanja na objektu koji jos nije odobren.",
+    "createdAt": { "$date": "2026-07-05T12:15:00.000Z" },
+    "updatedAt": { "$date": "2026-07-05T12:15:00.000Z" }
+  }
+]

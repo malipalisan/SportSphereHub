@@ -1,0 +1,80 @@
+<div class="page facility-details-page">
+  @if(message !== "") {
+    <p class="status-message">{{ message }}</p>
+  }
+
+  @if(facility._id !== "") {
+    <header class="page-header">
+      <div>
+        <h2>{{ facility.name }}</h2>
+        <p class="page-subtitle">{{ facility.city }}, {{ facility.address }}</p>
+      </div>
+    </header>
+
+    <section class="section-card">
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Grad</span>
+          <strong>{{ facility.city }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Adresa</span>
+          <strong>{{ facility.address }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Radno vreme</span>
+          <strong>{{ facility.workingHours.from }} - {{ facility.workingHours.to }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Cena po satu</span>
+          <strong>{{ facility.defaultHourlyPrice }} RSD</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Svidjanja</span>
+          <strong>{{ facility.likesCount }}</strong>
+        </div>
+
+        <div class="info-item">
+          <span class="info-label">Nesvidjanja</span>
+          <strong>{{ facility.dislikesCount }}</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <h3>Dostupni tereni / hale</h3>
+
+      @if(resources.length > 0) {
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Naziv</th>
+                <th>Tip</th>
+                <th>Kapacitet</th>
+                <th>Opis opreme</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              @for(resource of resources; track resource._id) {
+                <tr>
+                  <td>{{ resource.name }}</td>
+                  <td>{{ getResourceTypeLabel(resource.type) }}</td>
+                  <td>{{ resource.capacity }}</td>
+                  <td>{{ resource.equipmentDescription }}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      } @else {
+        <p class="empty-message">Nema dostupnih terena za ovaj objekat.</p>
+      }
+    </section>
+  }
+</div>

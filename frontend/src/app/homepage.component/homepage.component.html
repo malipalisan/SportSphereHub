@@ -1,0 +1,163 @@
+<div class="page homepage-page">
+  <header class="page-header">
+    <div>
+      <h1>Dobrodosli na SportSphere Hub!</h1>
+      <p class="page-subtitle">Pretraga sportskih objekata, promocija i dostupnih terena.</p>
+    </div>
+  </header>
+
+  <section class="section-card">
+    <div class="info-grid">
+      <div class="info-item">
+        <span class="info-label">Aktivni sportski objekti</span>
+        <strong>{{activeFacilitiesCount}}</strong>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Top 3 objekata po broju lajkova</h3>
+
+    @if(topFacilities.length > 0){
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Ime objekta</th>
+              <th>Broj lajkova</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(f of topFacilities; track f._id){
+              <tr>
+                <td>{{f.name}}</td>
+                <td>{{f.likesCount}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Trenutno nema aktivnih objekata.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Aktivne promocije</h3>
+
+    @if(promotions.length > 0){
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Naziv promocije</th>
+              <th>Objekat</th>
+              <th>Vazi od</th>
+              <th>Vazi do</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(p of promotions; track p._id){
+              <tr>
+                <td>{{p.title}}</td>
+                <td>{{p.facilityId.name}}</td>
+                <td>{{p.validFrom | date: 'dd.MM.yyyy'}}</td>
+                <td>{{p.validTo | date: 'dd.MM.yyyy'}}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Trenutno nema aktivnih promocija.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Pretraga sportskih objekata</h3>
+
+    <div class="form-grid">
+      <label>
+        Naziv objekta
+        <input type="text" [(ngModel)]="name">
+      </label>
+
+      <label>
+        Grad
+        <select multiple [(ngModel)]="selectedCities">
+          @for(city of cities; track city) {
+            <option [value]="city">{{ city }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Vrsta sporta
+        <select [(ngModel)]="selectedSportId">
+          <option value="">Svi sportovi</option>
+
+          @for(sport of sports; track sport._id) {
+            <option [value]="sport._id">{{ sport.name }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Tip terena
+        <select [(ngModel)]="selectedResourceType">
+          <option value="">Svi tipovi</option>
+          <option value="outdoor">Otvoreni</option>
+          <option value="indoor">Zatvoreni</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="action-row">
+      <button (click)="search()">Pretrazi</button>
+    </div>
+
+    @if(message !== "") {
+      <p class="status-message">{{ message }}</p>
+    }
+  </section>
+
+  @if(facilities.length > 0) {
+    <section class="section-card">
+      <h3>Rezultati pretrage</h3>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th (click)="sortFacilities('name')">Naziv</th>
+              <th (click)="sortFacilities('city')">Grad</th>
+              <th (click)="sortBySport()">Vrsta sportova</th>
+              <th>Adresa</th>
+              <th>Cena po satu</th>
+              <th>Lajkovi</th>
+              <th>Detalji</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(facility of facilities; track facility._id) {
+              <tr>
+                <td>{{ facility.name }}</td>
+                <td>{{ facility.city }}</td>
+                <td>{{ getSportsText(facility) }}</td>
+                <td>{{ facility.address }}</td>
+                <td>{{ facility.defaultHourlyPrice }} RSD</td>
+                <td>{{ facility.likesCount }}</td>
+                <td>
+                  <button (click)="details(facility._id)">Detalji</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+  }
+</div>

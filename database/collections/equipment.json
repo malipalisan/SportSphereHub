@@ -1,0 +1,53 @@
+[
+  {
+    "_id": { "$oid": "6b0000000000000000000001" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "sportId": { "$oid": "64f000000000000000000001" },
+    "name": "Lopta za fudbal Pro",
+    "imageUrl": "/uploads/equipment/football-pro.jpg",
+    "price": 4200,
+    "stock": 12,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6b0000000000000000000002" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "sportId": { "$oid": "64f000000000000000000002" },
+    "name": "Kosarkaska lopta Indoor",
+    "imageUrl": "/uploads/equipment/basketball-indoor.jpg",
+    "price": 3800,
+    "stock": 8,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6b0000000000000000000003" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "sportId": { "$oid": "64f000000000000000000003" },
+    "name": "Teniski reket Control",
+    "imageUrl": "/uploads/equipment/tennis-racket.jpg",
+    "price": 14500,
+    "stock": 4,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6b0000000000000000000004" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "sportId": { "$oid": "64f000000000000000000004" },
+    "name": "Naocare za plivanje",
+    "imageUrl": "/uploads/equipment/swim-goggles.jpg",
+    "price": 2200,
+    "stock": 15,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6b0000000000000000000005" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "sportId": { "$oid": "64f000000000000000000006" },
+    "name": "Fitnes traka",
+    "imageUrl": "/uploads/equipment/fitness-band.jpg",
+    "price": 1200,
+    "stock": 30,
+    "active": true
+  }
+]
+

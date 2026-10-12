@@ -1,0 +1,141 @@
+<div class="page employee-facility-page">
+  <header class="page-header">
+    <div>
+      <h2>Izmena sportskog objekta</h2>
+      <p class="page-subtitle">Azuriranje osnovnih podataka i resursa objekta.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="status-message">{{ message }}</p>
+  }
+
+  <section class="section-card">
+    <h3>Osnovni podaci</h3>
+
+    <div class="form-grid">
+      <label>
+        Naziv
+        <input type="text" [(ngModel)]="facility.name">
+      </label>
+
+      <label>
+        Grad
+        <input type="text" [(ngModel)]="facility.city">
+      </label>
+
+      <label>
+        Adresa
+        <input type="text" [(ngModel)]="facility.address">
+      </label>
+
+      <label>
+        Radno vreme od
+        <input type="time" [(ngModel)]="facility.workingHours.from">
+      </label>
+
+      <label>
+        Radno vreme do
+        <input type="time" [(ngModel)]="facility.workingHours.to">
+      </label>
+
+      <label>
+        Cena rezervacije po satu
+        <input type="number" [(ngModel)]="facility.defaultHourlyPrice">
+      </label>
+
+      <label>
+        Dozvoljena nepojavljivanja pre blokade
+        <input type="number" [(ngModel)]="facility.allowedNoShows">
+      </label>
+
+      <label class="field-group">
+        Opis
+        <textarea [(ngModel)]="facility.description"></textarea>
+      </label>
+
+      <div class="field-group checkbox-group">
+        <span>Sportovi</span>
+        <div class="checkbox-list">
+          @for(sport of sports; track sport._id) {
+            <label class="checkbox-option">
+              <input
+                type="checkbox"
+                [checked]="isSportChecked(sport._id)"
+                (change)="toggleSport(sport._id, $event)"
+              >
+              {{ sport.name }}
+            </label>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="page-header">
+      <div>
+        <h3>Tereni / hale / dvorane</h3>
+      </div>
+      <button (click)="addResource()">Dodaj teren/halu/dvoranu</button>
+    </div>
+
+    @for(resource of facility.resources; track $index) {
+      <article class="section-card resource-card">
+        <h4>Element {{ $index + 1 }}</h4>
+
+        <div class="form-grid">
+          <label>
+            Naziv
+            <input type="text" [(ngModel)]="resource.name">
+          </label>
+
+          <label>
+            Tip
+            <select [(ngModel)]="resource.type">
+              <option value="outdoor">Otvoreni teren</option>
+              <option value="indoor">Zatvoreni teren / hala</option>
+              <option value="arena">Dvorana za timske sportove</option>
+            </select>
+          </label>
+
+          <label>
+            Kapacitet
+            <input type="number" [(ngModel)]="resource.capacity">
+          </label>
+
+          <label class="field-group">
+            Opis opreme
+            <textarea maxlength="300" [(ngModel)]="resource.equipmentDescription"></textarea>
+            <span class="status-message">{{ resource.equipmentDescription.length }}/300 karaktera</span>
+          </label>
+
+          <div class="field-group checkbox-group">
+            <span>Sportovi za ovaj element</span>
+            <div class="checkbox-list">
+              @for(sport of sports; track sport._id) {
+                <label class="checkbox-option">
+                  <input
+                    type="checkbox"
+                    [checked]="isResourceSportChecked(resource, sport._id)"
+                    (change)="toggleResourceSport(resource, sport._id, $event)"
+                  >
+                  {{ sport.name }}
+                </label>
+              }
+            </div>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button (click)="removeResource($index)">Ukloni element</button>
+        </div>
+      </article>
+    }
+  </section>
+
+  <div class="action-row">
+    <button (click)="save()">Sacuvaj izmene</button>
+    <button (click)="cancel()">Odustani</button>
+  </div>
+</div>

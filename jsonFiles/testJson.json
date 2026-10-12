@@ -1,0 +1,41 @@
+{
+  "name": "Novi Sportski Centar",
+  "city": "Beograd",
+  "address": "Nova sportska 10",
+  "location": {
+    "lat": 44.81,
+    "lng": 20.45
+  },
+  "description": "Sportski objekat sa otvorenim i zatvorenim terenima.",
+  "images": [],
+  "sportIds": [
+    "64f000000000000000000001",
+    "64f000000000000000000002"
+  ],
+  "workingHours": {
+    "from": "08:00",
+    "to": "23:00"
+  },
+  "defaultHourlyPrice": 2500,
+  "allowedNoShows": 2,
+  "resources": [
+    {
+      "name": "Otvoreni teren 1",
+      "type": "outdoor",
+      "capacity": 10,
+      "sportIds": [
+        "64f000000000000000000001"
+      ],
+      "equipmentDescription": "Veštačka trava, reflektori i golovi."
+    },
+    {
+      "name": "Hala 1",
+      "type": "indoor",
+      "capacity": 12,
+      "sportIds": [
+        "64f000000000000000000002"
+      ],
+      "equipmentDescription": "Parket, semafor i koševi."
+    }
+  ]
+}

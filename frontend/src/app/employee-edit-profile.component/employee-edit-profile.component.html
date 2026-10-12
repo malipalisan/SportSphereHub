@@ -1,0 +1,60 @@
+<div class="page employee-edit-profile-page">
+  <header class="page-header">
+    <div>
+      <h2>Izmena profila</h2>
+      <p class="page-subtitle">Azuriranje licnih podataka i profilne slike zaposlenog.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="status-message">{{ message }}</p>
+  }
+
+  <section class="section-card">
+    <div class="profile-summary">
+      <div class="field-group">
+        <span>Profilna slika</span>
+        @if(avatarPreview !== ""){
+          <img class="avatar-preview" [src]="avatarPreview" alt="Pregled profilne slike">
+        }
+
+        <label>
+          Promeni profilnu sliku
+          <input type="file" accept="image/*" (change)="onFileSelected($event)">
+        </label>
+
+        <div class="action-row">
+          <button type="button" (click)="generateAvatar()">Generisi avatar</button>
+          <button type="button" (click)="saveAvatarAsProfileImage()">Sacuvaj avatar kao profilnu sliku</button>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          Ime
+          <input type="text" [(ngModel)]="user.firstName">
+        </label>
+
+        <label>
+          Prezime
+          <input type="text" [(ngModel)]="user.lastName">
+        </label>
+
+        <label>
+          Email
+          <input type="text" [(ngModel)]="user.email">
+        </label>
+
+        <label>
+          Telefon
+          <input type="text" [(ngModel)]="user.phone">
+        </label>
+      </div>
+    </div>
+
+    <div class="action-row">
+      <button (click)="save()">Sacuvaj</button>
+      <button (click)="cancel()">Otkazi</button>
+    </div>
+  </section>
+</div>

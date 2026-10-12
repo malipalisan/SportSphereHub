@@ -1,0 +1,120 @@
+<section class="page training-page">
+  <header class="page-header">
+    <div>
+      <h2>Individualni trening</h2>
+      <p class="page-subtitle">Filtrirajte trenere po objektu i sportu, pa zakazite odgovarajuci termin.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="success-message">{{message}}</p>
+  }
+
+  @if(error !== "") {
+    <p class="error-message">{{error}}</p>
+  }
+
+  <section class="section-card">
+    <h3>Filteri</h3>
+
+    <div class="filters form-grid">
+      <label>
+        Objekat
+        <select [(ngModel)]="facilityId" name="facilityId" (change)="loadData()">
+          <option value="">Svi objekti</option>
+          @for(facility of facilities; track facility._id) {
+            <option [value]="facility._id">{{facility.name}} - {{facility.city}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Sport
+        <select [(ngModel)]="sportId" name="sportId" (change)="loadData()">
+          <option value="">Svi sportovi</option>
+          @for(sport of sports; track sport._id) {
+            <option [value]="sport._id">{{sport.name}}</option>
+          }
+        </select>
+      </label>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Treneri</h3>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Trener</th>
+            <th>Objekat</th>
+            <th>Specijalizacija</th>
+            <th>Sportovi</th>
+            <th>Ocena</th>
+            <th>Cena / sat</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(trainer of trainers; track trainer._id) {
+            <tr>
+              <td>{{trainer.firstName}} {{trainer.lastName}}</td>
+              <td>{{trainer.facilityId?.name}}</td>
+              <td>{{trainer.specialization}}</td>
+              <td>
+                @for(sport of trainer.sportIds; track sport._id) {
+                  <span>{{sport.name}} </span>
+                }
+              </td>
+              <td>{{trainer.averageRating}}</td>
+              <td>{{trainer.hourlyPrice}}</td>
+              <td>
+                <button type="button" (click)="chooseTrainer(trainer)">Izaberi</button>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Zakazivanje treninga</h3>
+
+    <form class="booking-form form-grid" (ngSubmit)="bookTraining()">
+      <label>
+        Trener ID
+        <input type="text" name="trainerId" [(ngModel)]="trainerId" readonly>
+      </label>
+
+      <label>
+        Teren/Hala
+        <select name="resourceId" [(ngModel)]="resourceId">
+          @for(resource of resources; track resource._id) {
+            <option [value]="resource._id">{{resource.name}}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Datum
+        <input type="date" name="date" [(ngModel)]="date">
+      </label>
+
+      <label>
+        Pocetak
+        <input type="number" min="0" max="23" name="startHour" [(ngModel)]="startHour">
+      </label>
+
+      <label>
+        Trajanje
+        <input type="number" min="1" max="4" name="duration" [(ngModel)]="duration">
+      </label>
+
+      <div class="action-row">
+        <button type="submit">Zakazi trening</button>
+      </div>
+    </form>
+  </section>
+</section>

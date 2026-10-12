@@ -1,0 +1,214 @@
+[
+  {
+    "_id": { "$oid": "660000000000000000000001" },
+    "role": "admin",
+    "status": "approved",
+    "username": "admin",
+    "email": "admin@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "System",
+    "lastName": "Admin",
+    "phone": "0600000000",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [],
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-01T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-05-01T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000101" },
+    "role": "athlete",
+    "status": "approved",
+    "username": "marko",
+    "email": "marko@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Marko",
+    "lastName": "Markovic",
+    "phone": "0611111111",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000002" },
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "penalties": [
+      { "facilityId": { "$oid": "670000000000000000000001" }, "noShows": 1 }
+    ],
+    "createdAt": { "$date": "2026-05-05T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000102" },
+    "role": "athlete",
+    "status": "approved",
+    "username": "ana",
+    "email": "ana@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Ana",
+    "lastName": "Anic",
+    "phone": "0622222222",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000003" },
+      { "$oid": "64f000000000000000000004" }
+    ],
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-05T09:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T09:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000103" },
+    "role": "athlete",
+    "status": "approved",
+    "username": "luka",
+    "email": "luka@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Luka",
+    "lastName": "Lukic",
+    "phone": "0633333333",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000005" }
+    ],
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-06T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-11T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000104" },
+    "role": "athlete",
+    "status": "approved",
+    "username": "sara",
+    "email": "sara@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Sara",
+    "lastName": "Saric",
+    "phone": "0644444444",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000002" },
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "penalties": [
+      { "facilityId": { "$oid": "670000000000000000000002" }, "noShows": 2, "blockedUntil": { "$date": "2026-07-01T00:00:00.000Z" } }
+    ],
+    "createdAt": { "$date": "2026-05-07T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-12T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000105" },
+    "role": "athlete",
+    "status": "pending",
+    "username": "ivana_pending",
+    "email": "ivana.pending@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Ivana",
+    "lastName": "Ivanovic",
+    "phone": "0655555555",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "penalties": [],
+    "createdAt": { "$date": "2026-06-18T11:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T11:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000201" },
+    "role": "employee",
+    "status": "approved",
+    "username": "milos",
+    "email": "milos@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Milos",
+    "lastName": "Milosevic",
+    "phone": "0661111111",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000002" }
+    ],
+    "organizationId": { "$oid": "651000000000000000000001" },
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-01T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000202" },
+    "role": "employee",
+    "status": "approved",
+    "username": "jelena",
+    "email": "jelena@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Jelena",
+    "lastName": "Jovanovic",
+    "phone": "0662222222",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000005" }
+    ],
+    "organizationId": { "$oid": "651000000000000000000001" },
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-02T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000203" },
+    "role": "employee",
+    "status": "approved",
+    "username": "petar",
+    "email": "petar@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Petar",
+    "lastName": "Petrovic",
+    "phone": "0663333333",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "organizationId": { "$oid": "651000000000000000000002" },
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-03T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000204" },
+    "role": "employee",
+    "status": "approved",
+    "username": "nina",
+    "email": "nina@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Nina",
+    "lastName": "Nikolic",
+    "phone": "0664444444",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000004" },
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "organizationId": { "$oid": "651000000000000000000003" },
+    "penalties": [],
+    "createdAt": { "$date": "2026-05-04T08:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-10T08:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "660000000000000000000205" },
+    "role": "employee",
+    "status": "pending",
+    "username": "dejan_pending",
+    "email": "dejan.pending@sportsphere.local",
+    "passwordHash": "$2b$12$n8xiowIl3U9otG1KkSKPSOqNwrD1naZJts3RGb4ocJSztbsbUJkym",
+    "firstName": "Dejan",
+    "lastName": "Djuric",
+    "phone": "0665555555",
+    "avatarUrl": "/uploads/default-avatar.png",
+    "favoriteSportIds": [
+      { "$oid": "64f000000000000000000001" }
+    ],
+    "organizationId": { "$oid": "651000000000000000000004" },
+    "penalties": [],
+    "createdAt": { "$date": "2026-06-18T12:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T12:00:00.000Z" }
+  }
+]

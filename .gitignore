@@ -1,0 +1,34 @@
+# Libraries
+node_modules/
+
+# Build files
+dist/
+out-tsc/
+.angular/
+coverage/
+*.tsbuildinfo
+
+# Local config and secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+.cache/
+
+# Local tools settings
+.vscode/
+.idea/
+.history/
+.agents/
+.codex/
+
+# System files
+.DS_Store
+Thumbs.db
+Desktop.ini

@@ -1,0 +1,366 @@
+<div class="page facility-management-page">
+  <header class="page-header">
+    <div>
+      <h2>Upravljanje objektom: {{ facility.name }}</h2>
+      <p class="page-subtitle">Promocije, oprema, narudzbine i izvestaji za izabrani objekat.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="status-message">{{ message }}</p>
+  }
+
+  <section class="section-card">
+    <h3>Promocije</h3>
+
+    <div class="form-card">
+      <h4>Nova promocija</h4>
+
+      <div class="form-grid">
+        <label>
+          Naziv promocije
+          <input type="text" [(ngModel)]="newPromotion.title">
+        </label>
+
+        <label>
+          Sport
+          <select [(ngModel)]="newPromotion.sportId">
+            <option value="">Izaberite sport</option>
+            @for(sport of facilitySports; track sport._id) {
+              <option [value]="sport._id">{{ sport.name }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          Vazi od
+          <input type="date" [(ngModel)]="newPromotion.validFrom">
+        </label>
+
+        <label>
+          Vazi do
+          <input type="date" [(ngModel)]="newPromotion.validTo">
+        </label>
+
+        <label>
+          Tip popusta
+          <select [(ngModel)]="newPromotion.discountType">
+            <option value="percent">Procenat</option>
+            <option value="fixed">Fiksni popust</option>
+          </select>
+        </label>
+
+        <label>
+          Vrednost popusta
+          <input type="number" [(ngModel)]="newPromotion.discountValue">
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button (click)="createPromotion()">Dodaj promociju</button>
+      </div>
+    </div>
+
+    @if(promotions.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Naziv</th>
+              <th>Sport</th>
+              <th>Od</th>
+              <th>Do</th>
+              <th>Popust</th>
+              <th>Aktivna</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(p of promotions; track p._id) {
+              <tr>
+                <td>{{ p.title }}</td>
+                <td>{{ getSportName(p.sportId) }}</td>
+                <td>{{ p.validFrom | date:'dd.MM.yyyy' }}</td>
+                <td>{{ p.validTo | date:'dd.MM.yyyy' }}</td>
+                <td>
+                  @if(p.discountType === "percent") {
+                    {{ p.discountValue }}%
+                  } @else {
+                    {{ p.discountValue }} RSD
+                  }
+                </td>
+                <td>{{ p.active ? "Da" : "Ne" }}</td>
+                <td>
+                  <button (click)="editPromotion(p)">Izmeni</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema promocija za ovaj objekat.</p>
+    }
+
+    @if(selectedPromotion._id !== "") {
+      <div class="form-card">
+        <h4>Izmena promocije</h4>
+
+        <div class="form-grid">
+          <label>
+            Naziv
+            <input type="text" [(ngModel)]="selectedPromotion.title">
+          </label>
+
+          <label>
+            Sport
+            <select [(ngModel)]="selectedPromotion.sportId">
+              @for(sport of sports; track sport._id) {
+                <option [value]="sport._id">{{ sport.name }}</option>
+              }
+            </select>
+          </label>
+
+          <label>
+            Vazi od
+            <input type="date" [(ngModel)]="selectedPromotion.validFrom">
+          </label>
+
+          <label>
+            Vazi do
+            <input type="date" [(ngModel)]="selectedPromotion.validTo">
+          </label>
+
+          <label>
+            Tip popusta
+            <select [(ngModel)]="selectedPromotion.discountType">
+              <option value="percent">Procenat</option>
+              <option value="fixed">Fiksni popust</option>
+            </select>
+          </label>
+
+          <label>
+            Vrednost
+            <input type="number" [(ngModel)]="selectedPromotion.discountValue">
+          </label>
+
+          <label class="checkbox-option">
+            <input type="checkbox" [(ngModel)]="selectedPromotion.active">
+            Aktivna
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button (click)="updatePromotion()">Sacuvaj promociju</button>
+          <button (click)="cancelPromotionEdit()">Otkazi</button>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Oprema</h3>
+
+    <div class="form-card">
+      <h4>Nova oprema</h4>
+
+      <div class="form-grid">
+        <label>
+          Naziv
+          <input type="text" [(ngModel)]="newEquipment.name">
+        </label>
+
+        <label>
+          Sport
+          <select [(ngModel)]="newEquipment.sportId">
+            <option value="">Izaberite sport</option>
+            @for(sport of facilitySports; track sport._id) {
+              <option [value]="sport._id">{{ sport.name }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          Slika
+          <input type="file" accept="image/*" (change)="onNewEquipmentImageSelected($event)">
+        </label>
+
+        <label>
+          Cena
+          <input type="number" [(ngModel)]="newEquipment.price">
+        </label>
+
+        <label>
+          Zalihe
+          <input type="number" [(ngModel)]="newEquipment.stock">
+        </label>
+      </div>
+
+      <div class="action-row">
+        <button (click)="createEquipment()">Dodaj opremu</button>
+      </div>
+    </div>
+
+    @if(equipmentList.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Naziv</th>
+              <th>Sport</th>
+              <th>Cena</th>
+              <th>Zalihe</th>
+              <th>Aktivna</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(e of equipmentList; track e._id) {
+              <tr>
+                <td>{{ e.name }}</td>
+                <td>{{ getSportName(e.sportId) }}</td>
+                <td>{{ e.price }} RSD</td>
+                <td>{{ e.stock }}</td>
+                <td>{{ e.active ? "Da" : "Ne" }}</td>
+                <td>
+                  <button (click)="editEquipment(e)">Izmeni</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema opreme za ovaj objekat.</p>
+    }
+
+    @if(selectedEquipment._id !== "") {
+      <div class="form-card">
+        <h4>Izmena opreme</h4>
+
+        <div class="form-grid">
+          <label>
+            Naziv
+            <input type="text" [(ngModel)]="selectedEquipment.name">
+          </label>
+
+          <label>
+            Sport
+            <select [(ngModel)]="selectedEquipment.sportId">
+              @for(sport of sports; track sport._id) {
+                <option [value]="sport._id">{{ sport.name }}</option>
+              }
+            </select>
+          </label>
+
+          <label>
+            Slika
+            <input type="file" accept="image/*" (change)="onSelectedEquipmentImageSelected($event)">
+          </label>
+
+          <label>
+            Cena
+            <input type="number" [(ngModel)]="selectedEquipment.price">
+          </label>
+
+          <label>
+            Zalihe
+            <input type="number" [(ngModel)]="selectedEquipment.stock">
+          </label>
+
+          <label class="checkbox-option">
+            <input type="checkbox" [(ngModel)]="selectedEquipment.active">
+            Aktivna
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button (click)="updateEquipment()">Sacuvaj opremu</button>
+          <button (click)="cancelEquipmentEdit()">Otkazi</button>
+        </div>
+      </div>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Narudzbine</h3>
+
+    @if(orders.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Stavke</th>
+              <th>Ukupno</th>
+              <th>Status</th>
+              <th>Promeni status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(order of orders; track order._id) {
+              <tr>
+                <td>{{ order.createdAt | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>
+                  <ul>
+                    @for(item of order.items; track item.equipmentId) {
+                      <li>{{ item.name }} x {{ item.quantity }} - {{ item.unitPrice }} RSD</li>
+                    }
+                  </ul>
+                </td>
+                <td>{{ order.totalPrice }} RSD</td>
+                <td>{{ order.status }}</td>
+                <td>
+                  <div class="inline-actions">
+                    <button (click)="updateOrderStatus(order._id, 'accepted')">Prihvaceno</button>
+                    <button (click)="updateOrderStatus(order._id, 'picked_up')">Preuzeto</button>
+                    <button (click)="updateOrderStatus(order._id, 'cancelled')">Otkazano</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema narudzbina za ovaj objekat.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Izvestaji</h3>
+
+    <div class="form-grid">
+      <label>
+        Godina
+        <input type="number" [(ngModel)]="reportYear">
+      </label>
+
+      <label>
+        Mesec
+        <select [(ngModel)]="reportMonth">
+          <option [value]="1">Januar</option>
+          <option [value]="2">Februar</option>
+          <option [value]="3">Mart</option>
+          <option [value]="4">April</option>
+          <option [value]="5">Maj</option>
+          <option [value]="6">Jun</option>
+          <option [value]="7">Jul</option>
+          <option [value]="8">Avgust</option>
+          <option [value]="9">Septembar</option>
+          <option [value]="10">Oktobar</option>
+          <option [value]="11">Novembar</option>
+          <option [value]="12">Decembar</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="action-row">
+      <button (click)="downloadOccupancyReport()">PDF izvestaj o popunjenosti terena</button>
+      <button (click)="downloadEquipmentReport()">PDF izvestaj o prometu opreme</button>
+    </div>
+  </section>
+</div>

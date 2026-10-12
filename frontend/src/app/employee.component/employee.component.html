@@ -1,0 +1,203 @@
+<div class="page employee-page">
+  <header class="page-header">
+    <div>
+      <h2>Profil zaposlenog</h2>
+      <p class="page-subtitle">Pregled profila, objekata organizacije i rasporeda termina.</p>
+    </div>
+    <button (click)="editProfile()">Izmeni profil</button>
+  </header>
+
+  @if(message !== "") {
+    <p class="status-message">{{message}}</p>
+  }
+
+  <section class="section-card">
+    <h3>Licni podaci</h3>
+
+    <div class="profile-summary">
+      @if(user.avatarUrl !== ""){
+        <img class="avatar-preview" [src]="'http://localhost:4000' + user.avatarUrl" alt="Profilna slika">
+      }
+
+      <div class="info-grid">
+        <div class="info-item">
+          <span class="info-label">Ime</span>
+          <strong>{{user.firstName}}</strong>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Prezime</span>
+          <strong>{{user.lastName}}</strong>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Email</span>
+          <strong>{{user.email}}</strong>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Telefon</span>
+          <strong>{{user.phone}}</strong>
+        </div>
+        <div class="info-item">
+          <span class="info-label">Korisnicko ime</span>
+          <strong>{{user.username}}</strong>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <div class="page-header">
+      <div>
+        <h3>Objekti koje vodi organizacija</h3>
+      </div>
+      <button routerLink="/employee-add-facility">Dodaj novi objekat</button>
+    </div>
+
+    @if(facilities.length > 0){
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Naziv</th>
+              <th>Grad</th>
+              <th>Status</th>
+              <th>Vrste sportova</th>
+              <th>Elementi / tereni / hale</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(row of facilities; track row.facility._id){
+              <tr>
+                <td>{{row.facility.name}}</td>
+                <td>{{row.facility.city}}</td>
+                <td>{{row.facility.status}}</td>
+                <td>
+                  @for(sport of row.sports; track sport._id){
+                    {{sport.name}}
+                    @if(!$last){ | }
+                  }
+                </td>
+                <td>
+                  @if(row.resources.length > 0){
+                    <ul>
+                      @for(resource of row.resources; track resource._id){
+                        <li>
+                          {{resource.name}} - {{generateResourceTypeLabel(resource.type)}} - kapacitet: {{resource.capacity}}
+                        </li>
+                      }
+                    </ul>
+                  } @else {
+                    <span class="empty-message">Nema dodatnih elemenata</span>
+                  }
+                </td>
+                <td>
+                  <div class="inline-actions">
+                    <button type="button" (click)="editFacility(row.facility._id)">Izmeni objekat</button>
+                    <button (click)="manage(row.facility._id)">Upravljaj</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else{
+      <p class="empty-message">Vasa organizacija trenutno nema sportskih objekata.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Rezervacije terena</h3>
+
+    @if(reservations.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Objekat</th>
+              <th>Teren</th>
+              <th>Sport</th>
+              <th>Pocetak</th>
+              <th>Kraj</th>
+              <th>Status</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(r of reservations; track r._id) {
+              <tr>
+                <td>{{ r.facilityId.name }}</td>
+                <td>{{ r.resourceId.name }}</td>
+                <td>{{ r.sportId.name }}</td>
+                <td>{{ r.startAt | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{ r.endAt | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{ r.status }}</td>
+                <td>
+                  @if(canMarkAttendance(r.startAt, r.status)) {
+                    <div class="inline-actions">
+                      <button (click)="confirmReservation(r._id)">Potvrdi</button>
+                      <button (click)="noShowReservation(r._id)">Odjavi</button>
+                    </div>
+                  } @else {
+                    -
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema rezervacija.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Individualni treninzi</h3>
+
+    @if(trainings.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Objekat</th>
+              <th>Trener</th>
+              <th>Sport</th>
+              <th>Pocetak</th>
+              <th>Kraj</th>
+              <th>Status</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(t of trainings; track t._id) {
+              <tr>
+                <td>{{ t.facilityId.name }}</td>
+                <td>{{ t.trainerId.firstName }} {{ t.trainerId.lastName }}</td>
+                <td>{{ t.sportId.name }}</td>
+                <td>{{ t.startAt | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{ t.endAt | date:'dd.MM.yyyy HH:mm' }}</td>
+                <td>{{ t.status }}</td>
+                <td>
+                  @if(canMarkAttendance(t.startAt, t.status)) {
+                    <div class="inline-actions">
+                      <button (click)="confirmTraining(t._id)">Potvrdi</button>
+                      <button (click)="noShowTraining(t._id)">Odjavi</button>
+                    </div>
+                  } @else {
+                    -
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema zakazanih treninga.</p>
+    }
+  </section>
+</div>

@@ -1,0 +1,39 @@
+<header class="app-header">
+  <div class="logo" routerLink="/">SportSphere Hub</div>
+
+  <nav class="main-nav">
+    <a routerLink="/">Početna</a>
+
+    @if(!isLoggedIn){
+      <a routerLink="/register">Registuj se</a>
+      <a routerLink="/login">Login</a>
+    }
+
+
+    @if(isLoggedIn && user) {
+      @if(user.role === "admin"){
+        <a routerLink="/admin">Admin panel</a>
+      }
+      @else if(user.role === "employee"){
+        <a routerLink = "/employee">Profil</a>
+        <a routerLink = "/employee-calendar">Kalendar zaposlenog</a>
+      }
+      @else if(user.role === "athlete"){
+        <a routerLink = "/athlete">Profil</a>
+        <a routerLink = "/athlete/search">Pretraga</a>
+        <a routerLink = "/athlete/teammates">Saigraci</a>
+        <a routerLink = "/athlete/training">Treninzi</a>
+        <a routerLink = "/athlete/shop">Prodavnica</a>
+      }
+      <button (click)="logout()">Izloguj se</button>
+    }
+  </nav>
+</header>
+
+<main class="page-content">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="app-footer">
+  <p>SportSphere Hub © 2026</p>
+</footer>

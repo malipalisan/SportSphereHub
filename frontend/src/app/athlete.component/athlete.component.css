@@ -1,0 +1,145 @@
+.athlete-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+  color: #111827;
+}
+
+.athlete-page h2,
+.athlete-page h3 {
+  margin: 0 0 16px;
+}
+
+.profile-layout {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 32px;
+}
+
+.avatar-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.avatar-panel img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.avatar-panel label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.profile-table,
+.reservations-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.profile-table th,
+.profile-table td,
+.reservations-table th,
+.reservations-table td {
+  border: 1px solid #d1d5db;
+  padding: 10px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.profile-table th {
+  width: 180px;
+  background: #f9fafb;
+}
+
+.profile-table input[type="text"],
+.profile-table input[type="email"] {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  padding: 8px;
+}
+
+.profile-table input[readonly] {
+  background: #f3f4f6;
+  color: #6b7280;
+}
+
+.sports-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 16px;
+}
+
+.sport-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.primary-button,
+.cancel-button,
+.confirm-button {
+  border: 0;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.primary-button {
+  margin-top: 14px;
+  background: #2563eb;
+  color: white;
+}
+
+.cancel-button {
+  background: #dc2626;
+  color: white;
+}
+
+.confirm-button {
+  background: #15803d;
+  color: white;
+}
+
+.table-wrap {
+  overflow-x: auto;
+}
+
+.reservations-table th {
+  background: #f9fafb;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.reservations-table td {
+  white-space: nowrap;
+}
+
+.success-message {
+  color: #15803d;
+}
+
+.error-message {
+  color: #b91c1c;
+}
+
+.empty-message {
+  color: #6b7280;
+}
+
+@media (max-width: 760px) {
+  .profile-layout {
+    grid-template-columns: 1fr;
+  }
+}

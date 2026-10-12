@@ -1,0 +1,59 @@
+[
+  {
+    "_id": { "$oid": "6d0000000000000000000001" },
+    "authorId": { "$oid": "660000000000000000000101" },
+    "sportId": { "$oid": "64f000000000000000000001" },
+    "city": "Beograd",
+    "startAt": { "$date": "2026-06-25T19:00:00.000Z" },
+    "endAt": { "$date": "2026-06-25T20:00:00.000Z" },
+    "missingPlayers": 3,
+    "status": "active",
+    "joinRequests": [
+      {
+        "athleteId": { "$oid": "660000000000000000000103" },
+        "status": "approved",
+        "createdAt": { "$date": "2026-06-19T10:00:00.000Z" }
+      },
+      {
+        "athleteId": { "$oid": "660000000000000000000104" },
+        "status": "pending",
+        "createdAt": { "$date": "2026-06-19T12:00:00.000Z" }
+      }
+    ],
+    "createdAt": { "$date": "2026-06-18T10:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-19T12:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6d0000000000000000000002" },
+    "authorId": { "$oid": "660000000000000000000102" },
+    "sportId": { "$oid": "64f000000000000000000003" },
+    "city": "Novi Sad",
+    "startAt": { "$date": "2026-06-26T08:00:00.000Z" },
+    "endAt": { "$date": "2026-06-26T09:00:00.000Z" },
+    "missingPlayers": 1,
+    "status": "active",
+    "joinRequests": [],
+    "createdAt": { "$date": "2026-06-18T15:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T15:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6d0000000000000000000003" },
+    "authorId": { "$oid": "660000000000000000000103" },
+    "sportId": { "$oid": "64f000000000000000000002" },
+    "city": "Beograd",
+    "startAt": { "$date": "2026-06-10T18:00:00.000Z" },
+    "endAt": { "$date": "2026-06-10T19:00:00.000Z" },
+    "missingPlayers": 0,
+    "status": "closed",
+    "joinRequests": [
+      {
+        "athleteId": { "$oid": "660000000000000000000104" },
+        "status": "approved",
+        "createdAt": { "$date": "2026-06-08T10:00:00.000Z" }
+      }
+    ],
+    "createdAt": { "$date": "2026-06-07T10:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-09T10:00:00.000Z" }
+  }
+]
+

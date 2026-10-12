@@ -1,0 +1,60 @@
+[
+  {
+    "_id": { "$oid": "6b1000000000000000000001" },
+    "athleteId": { "$oid": "660000000000000000000101" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "items": [
+      {
+        "equipmentId": { "$oid": "6b0000000000000000000001" },
+        "name": "Lopta za fudbal Pro",
+        "quantity": 1,
+        "unitPrice": 4200
+      },
+      {
+        "equipmentId": { "$oid": "6b0000000000000000000002" },
+        "name": "Kosarkaska lopta Indoor",
+        "quantity": 1,
+        "unitPrice": 3800
+      }
+    ],
+    "totalPrice": 8000,
+    "status": "ordered",
+    "createdAt": { "$date": "2026-06-18T14:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-18T14:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6b1000000000000000000002" },
+    "athleteId": { "$oid": "660000000000000000000102" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "items": [
+      {
+        "equipmentId": { "$oid": "6b0000000000000000000003" },
+        "name": "Teniski reket Control",
+        "quantity": 1,
+        "unitPrice": 14500
+      }
+    ],
+    "totalPrice": 14500,
+    "status": "picked_up",
+    "createdAt": { "$date": "2026-06-11T12:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-12T09:00:00.000Z" }
+  },
+  {
+    "_id": { "$oid": "6b1000000000000000000003" },
+    "athleteId": { "$oid": "660000000000000000000104" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "items": [
+      {
+        "equipmentId": { "$oid": "6b0000000000000000000005" },
+        "name": "Fitnes traka",
+        "quantity": 2,
+        "unitPrice": 1200
+      }
+    ],
+    "totalPrice": 2400,
+    "status": "cancelled",
+    "createdAt": { "$date": "2026-06-16T12:00:00.000Z" },
+    "updatedAt": { "$date": "2026-06-17T12:00:00.000Z" }
+  }
+]
+

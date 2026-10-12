@@ -1,0 +1,44 @@
+[
+  {
+    "_id": { "$oid": "6a0000000000000000000001" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "firstName": "Viktor",
+    "lastName": "Vasic",
+    "specialization": "Kondicija za timske sportove",
+    "sportIds": [
+      { "$oid": "64f000000000000000000001" },
+      { "$oid": "64f000000000000000000002" }
+    ],
+    "averageRating": 4.8,
+    "hourlyPrice": 3500,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6a0000000000000000000002" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "firstName": "Tamara",
+    "lastName": "Tomic",
+    "specialization": "Tenis tehnika",
+    "sportIds": [
+      { "$oid": "64f000000000000000000003" }
+    ],
+    "averageRating": 4.9,
+    "hourlyPrice": 4200,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6a0000000000000000000003" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "firstName": "Nikola",
+    "lastName": "Nedic",
+    "specialization": "Plivanje i oporavak",
+    "sportIds": [
+      { "$oid": "64f000000000000000000004" },
+      { "$oid": "64f000000000000000000006" }
+    ],
+    "averageRating": 4.6,
+    "hourlyPrice": 3000,
+    "active": true
+  }
+]
+

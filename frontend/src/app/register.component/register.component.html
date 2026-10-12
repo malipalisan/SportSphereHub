@@ -1,0 +1,122 @@
+<div class="page register-page">
+  <header class="page-header">
+    <div>
+      <h2>Registracija</h2>
+      <p class="page-subtitle">Kreiranje naloga za sportistu ili zaposlenog</p>
+    </div>
+  </header>
+
+  <section class="section-card">
+    <h3>Osnovni podaci</h3>
+
+    <div class="form-grid">
+      <label>
+        Tip korisnika
+        <select [(ngModel)]="role" name="role" (change)="onRoleChange()">
+          <option value="athlete">Sportista</option>
+          <option value="employee">Zaposleni</option>
+        </select>
+      </label>
+
+      <label>
+        Korisnicko ime
+        <input [(ngModel)]="username" name="username" placeholder="Korisnicko ime" type="text">
+      </label>
+
+      <label>
+        Lozinka
+        <input [(ngModel)]="password" name="password" placeholder="Lozinka" type="password">
+      </label>
+
+      <label>
+        Ime
+        <input [(ngModel)]="firstName" name="firstName" placeholder="Ime" type="text">
+      </label>
+
+      <label>
+        Prezime
+        <input [(ngModel)]="lastName" name="lastName" placeholder="Prezime" type="text">
+      </label>
+
+      <label>
+        Telefon
+        <input [(ngModel)]="phone" name="phone" placeholder="Telefon" type="text">
+      </label>
+
+      <label>
+        Email
+        <input [(ngModel)]="email" name="email" placeholder="Email" type="text">
+      </label>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Profilna slika</h3>
+
+    <div class="form-grid">
+      <label>
+        Upload slike
+        <input type="file" (change)="onFileSelected($event)" accept="image/*">
+      </label>
+
+      <div class="field-group">
+        <span>Generator avatara</span>
+        <div class="action-row">
+          <button type="button" (click)="generateAvatar()">Generisi avatar</button>
+          @if(avatarPreview){
+            <button type="button" (click)="saveAvatarAsProfileImage()">Sacuvaj kao profilnu sliku</button>
+          }
+        </div>
+      </div>
+
+      @if(avatarPreview){
+        <img class="avatar-preview" [src]="avatarPreview" alt="Pregled avatara">
+      }
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Omiljeni sportovi</h3>
+
+    <label class="field-group">
+      Sportovi
+      <select multiple [(ngModel)]="favoriteSportIds" name="favoriteSportIds">
+        @for(sport of sports; track sport._id){
+          <option [value]="sport._id">{{sport.name}}</option>
+        }
+      </select>
+    </label>
+  </section>
+
+  @if(role === "employee"){
+    <section class="section-card">
+      <h3>Podaci organizacije</h3>
+
+      <div class="form-grid">
+        <label>
+          Naziv sportskog objekta
+          <input [(ngModel)]="organizationName" name="organizationName" placeholder="Naziv sportskog objekta">
+        </label>
+
+        <label>
+          Adresa sedista
+          <input [(ngModel)]="headquartersAddress" name="headquartersAddress" placeholder="Adresa sedista">
+        </label>
+
+        <label>
+          Maticni broj
+          <input [(ngModel)]="registrationNumber" name="registrationNumber" placeholder="Maticni broj">
+        </label>
+
+        <label>
+          PIB
+          <input [(ngModel)]="taxId" name="taxId" placeholder="PIB">
+        </label>
+      </div>
+    </section>
+  }
+
+  <div class="action-row">
+    <button (click)="register()">Registuj se</button>
+  </div>
+</div>

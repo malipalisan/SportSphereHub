@@ -1,0 +1,192 @@
+<div class="page admin-page">
+  <header class="page-header">
+    <div>
+      <h2>Admin panel</h2>
+      <p class="page-subtitle">Upravljanje korisnicima, zahtevima, objektima, trenerima i sportovima.</p>
+    </div>
+  </header>
+
+  @if(message !== "") {
+    <p class="status-message">{{message}}</p>
+  }
+
+  <section class="section-card">
+    <h3>Upravljanje korisnicima</h3>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Korisnicko ime</th>
+            <th>Ime</th>
+            <th>Prezime</th>
+            <th>Email</th>
+            <th>Uloga</th>
+            <th>Status</th>
+            <th>Telefon</th>
+            <th>Akcije</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          @for(user of users; track user._id){
+            <tr>
+              <td>{{user.username}}</td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+              <td>{{user.status}}</td>
+              <td>{{user.phone}}</td>
+              <td>
+                <div class="inline-actions">
+                  <button (click)="editUser(user._id)">Izmeni</button>
+                  <button (click)="deleteUser(user._id)">Obrisi</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="section-card">
+    <h3>Zahtevi za registraciju</h3>
+
+    @if(registrationRequests.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Korisnicko ime</th>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Email</th>
+              <th>Uloga</th>
+              <th>Telefon</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(user of registrationRequests; track user._id) {
+              <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.phone }}</td>
+                <td>
+                  <div class="inline-actions">
+                    <button (click)="approveRegistrationRequest(user._id)">Odobri</button>
+                    <button (click)="rejectRegistrationRequest(user._id)">Odbij</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema novih zahteva za registraciju.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Zahtevi za odobravanje sportskih objekata</h3>
+
+    @if(facilityRequests.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Naziv</th>
+              <th>Grad</th>
+              <th>Adresa</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(facility of facilityRequests; track facility._id) {
+              <tr>
+                <td>{{facility.name}}</td>
+                <td>{{facility.city}}</td>
+                <td>{{facility.address}}</td>
+                <td>
+                  <div class="inline-actions">
+                    <button (click)="approveFacility(facility._id)">Odobri</button>
+                    <button (click)="rejectFacility(facility._id)">Odbij</button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema zahteva za odobravanje objekata.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Evidencija trenera</h3>
+
+    @if(trainers.length > 0) {
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Ime</th>
+              <th>Prezime</th>
+              <th>Specijalizacija</th>
+              <th>Prosecna ocena</th>
+              <th>Cena po satu</th>
+              <th>Aktivan</th>
+              <th>Akcije</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for(trainer of trainers; track trainer._id) {
+              <tr>
+                <td>{{ trainer.firstName }}</td>
+                <td>{{ trainer.lastName }}</td>
+                <td>{{ trainer.specialization }}</td>
+                <td>{{ trainer.averageRating }}</td>
+                <td>{{ trainer.hourlyPrice }} RSD</td>
+                <td>{{ trainer.active ? "Da" : "Ne" }}</td>
+                <td>
+                  @if(trainer.active) {
+                    <button (click)="deactivateTrainer(trainer._id)">Deaktiviraj</button>
+                  } @else {
+                    <span>Deaktiviran</span>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p class="empty-message">Nema trenera u sistemu.</p>
+    }
+  </section>
+
+  <section class="section-card">
+    <h3>Dodavanje nove vrste sporta</h3>
+
+    <div class="form-grid">
+      <label>
+        Naziv sporta
+        <input type="text" [(ngModel)]="newSportName">
+      </label>
+    </div>
+
+    <div class="action-row">
+      <button (click)="addSport()">Dodaj sport</button>
+    </div>
+  </section>
+</div>

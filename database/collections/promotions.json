@@ -1,0 +1,47 @@
+[
+  {
+    "_id": { "$oid": "6c0000000000000000000001" },
+    "facilityId": { "$oid": "670000000000000000000001" },
+    "sportId": { "$oid": "64f000000000000000000002" },
+    "title": "Vecernji basket popust",
+    "validFrom": { "$date": "2026-06-01T00:00:00.000Z" },
+    "validTo": { "$date": "2026-06-30T23:59:59.000Z" },
+    "discountType": "percent",
+    "discountValue": 15,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6c0000000000000000000002" },
+    "facilityId": { "$oid": "670000000000000000000002" },
+    "sportId": { "$oid": "64f000000000000000000003" },
+    "title": "Jutarnji tenis",
+    "validFrom": { "$date": "2026-06-10T00:00:00.000Z" },
+    "validTo": { "$date": "2026-07-10T23:59:59.000Z" },
+    "discountType": "fixed",
+    "discountValue": 500,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6c0000000000000000000003" },
+    "facilityId": { "$oid": "670000000000000000000003" },
+    "sportId": { "$oid": "64f000000000000000000004" },
+    "title": "Letnje plivanje",
+    "validFrom": { "$date": "2026-06-15T00:00:00.000Z" },
+    "validTo": { "$date": "2026-08-31T23:59:59.000Z" },
+    "discountType": "percent",
+    "discountValue": 20,
+    "active": true
+  },
+  {
+    "_id": { "$oid": "6c0000000000000000000004" },
+    "facilityId": { "$oid": "670000000000000000000004" },
+    "sportId": { "$oid": "64f000000000000000000001" },
+    "title": "Istekla prolecna akcija",
+    "validFrom": { "$date": "2026-04-01T00:00:00.000Z" },
+    "validTo": { "$date": "2026-04-30T23:59:59.000Z" },
+    "discountType": "percent",
+    "discountValue": 10,
+    "active": false
+  }
+]
+

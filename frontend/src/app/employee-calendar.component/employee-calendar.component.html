@@ -1,0 +1,69 @@
+<div class="calendar-page">
+  <header class="calendar-header">
+    <h2>Kalendar zaposlenog</h2>
+    <div class="filters">
+      <select [(ngModel)]="selectedFacilityId" (change)="onFacilityChange()">
+        @for(f of facilities; track f._id){
+          <option [value]="f._id">{{ f.name }}</option>
+        }
+      </select>
+
+      <select [(ngModel)]="selectedResourceId" (change)="onResourceChange()">
+        @for(r of resources; track r._id){
+          <option [value]="r._id">{{ r.name }}</option>
+        }
+      </select>
+
+      <button (click)="goToday()">Danas</button>
+      <button (click)="previousWeek()">‹</button>
+      <button (click)="nextWeek()">›</button>
+    </div>
+  </header>
+
+  <div class="calendar-grid">
+    <div class="time-column">
+      <div class="corner">Vreme</div>
+      <div class="time-labels" [style.height.px]="calendarHeight">
+      @for(hour of timeLabels; track hour){
+        <div class="time-cell" [style.top.px]="timeLabelTop(hour)">
+          {{hour}}:00
+        </div>
+      }
+      </div>
+    </div>
+
+    @for (day of days; track day.toDateString()) {
+      <div class="day-column">
+        <div class="day-title">
+          {{ day | date:'EEE dd.MM.' }}
+        </div>
+
+        <div class="day-body" [style.height.px]="calendarHeight">
+          @for (hour of hours; track hour) {
+            <div class="hour-line"></div>
+          }
+
+          @for (event of eventsForDay(day); track event._id) {
+            <article
+              class="event-card"
+              [class.reservation]="event.type === 'reservation'"
+              [class.training]="event.type === 'training'"
+              [style.top.px]="eventTop(event)"
+              [style.height.px]="eventHeight(event)"
+            >
+              <strong>{{ event.title }}</strong>
+              <span>
+                {{ event.startAt | date:'HH:mm' }} - {{ event.endAt | date:'HH:mm' }}
+              </span>
+            </article>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  <footer class="legend">
+    <span class="legend-item"><i class="reservation-box"></i>Rezervacija</span>
+    <span class="legend-item"><i class="training-box"></i>Trening</span>
+  </footer>
+</div>

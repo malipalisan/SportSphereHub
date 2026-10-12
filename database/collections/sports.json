@@ -1,0 +1,10 @@
+[
+  { "_id": { "$oid": "64f000000000000000000001" }, "name": "Fudbal", "active": true },
+  { "_id": { "$oid": "64f000000000000000000002" }, "name": "Kosarka", "active": true },
+  { "_id": { "$oid": "64f000000000000000000003" }, "name": "Tenis", "active": true },
+  { "_id": { "$oid": "64f000000000000000000004" }, "name": "Plivanje", "active": true },
+  { "_id": { "$oid": "64f000000000000000000005" }, "name": "Odbojka", "active": true },
+  { "_id": { "$oid": "64f000000000000000000006" }, "name": "Fitnes", "active": true },
+  { "_id": { "$oid": "64f000000000000000000007" }, "name": "Rukomet", "active": true }
+]
+
